@@ -10,7 +10,7 @@ package com.loet.mine.ip;
 public class IPChangeTool {
 
     /**
-     * 
+     * main方法，输入IP或数字转化
      *
      * @param args
      */
