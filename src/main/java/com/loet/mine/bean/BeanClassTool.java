@@ -16,16 +16,9 @@ public class BeanClassTool {
         List<PropertyModel> list = new ArrayList<>();
 
         // 设置表字段名称，属性、注释
-        list.add(PropertyModel.get("id", "long", "主键ID"));
-        list.add(PropertyModel.get("start_ip_num", "long", "起始IP十进制数"));
-        list.add(PropertyModel.get("end_ip_num", "long", "结束IP十进制数"));
-        list.add(PropertyModel.get("province", "String", "省份"));
-        list.add(PropertyModel.get("city", "String", "地级市"));
-        list.add(PropertyModel.get("city_sub", "String", "县级市"));
-        list.add(PropertyModel.get("isp", "String", "运营商"));
-        list.add(PropertyModel.get("start_ip", "String", "起始IP地址"));
-        list.add(PropertyModel.get("end_ip", "String", "结束IP地址"));
-        list.add(PropertyModel.get("ipDvalue", "int", "IP差值"));
+        list.add(PropertyModel.get("id", "String", "主键ID"));
+        list.add(PropertyModel.get("appId", "int", "应用ID"));
+        list.add(PropertyModel.get("appName", "String", "应用名称"));
 
         getBeanClass(list);
     }
@@ -59,7 +52,14 @@ public class BeanClassTool {
                     .append("(").append(propertyModel.getType()).append(" ").append(name).append(") {")
                     .append(CHANG_LINE).append("this.").append(name).append(" = ").append(name).append(";")
                     .append(CHANG_LINE).append("}");
+
         }
+
+        methodBuilder.append(CHANG_LINE).append("/**").append(CHANG_LINE).append("* @return").append(CHANG_LINE)
+                .append("*/").append(CHANG_LINE).append("@Override").append(CHANG_LINE)
+                .append("public String toString() {").append(CHANG_LINE)
+                .append("return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);")
+                .append(CHANG_LINE).append("}");
 
         propertyBuilder.append(methodBuilder.toString());
 
