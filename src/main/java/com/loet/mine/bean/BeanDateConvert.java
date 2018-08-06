@@ -43,11 +43,11 @@ public class BeanDateConvert implements Converter {
         }
         if (value instanceof Long) {
             Long longValue = (Long) value;
-            return new Date(longValue.longValue());
+            return new Date(longValue);
         }
         if (value instanceof String) {
             String dateStr = (String) value;
-            Date endTime = null;
+            Date endTime;
             try {
                 if (dateStr.matches(Constants.DATE_TIME_REGEXP)) {
                     DateFormat sdf = new SimpleDateFormat(Constants.DATE_TIME_FORMAT);

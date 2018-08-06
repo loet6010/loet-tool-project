@@ -48,7 +48,7 @@ public class IPChangeTool {
      * @param ip
      * @return
      */
-    public static long getNumFromIp(String ip) {
+    private static long getNumFromIp(String ip) {
         StringBuilder ipBuilder = new StringBuilder();
 
         String[] subIps = ip.split("\\.");
@@ -69,7 +69,7 @@ public class IPChangeTool {
      * @param digits
      * @return
      */
-    public static String getSupplementZero(String sourceString, int digits) {
+    private static String getSupplementZero(String sourceString, int digits) {
         int surplusNum = (digits - sourceString.length());
         String supplementZero = "";
         if (surplusNum > 0) {

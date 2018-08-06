@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description BeanClassTool
  * @author liurh
+ * @Description BeanClassTool
  * @date 2018年7月21日
  */
 public class BeanClassTool {
-    public static final String SPLIT_REGEX = "_";
-    public static final String CHANG_LINE = "\n";
+    private static final String SPLIT_REGEX = "_";
+    private static final String CHANG_LINE = "\n";
 
     public static void main(String[] args) {
         List<PropertyModel> list = new ArrayList<>();
@@ -28,7 +28,7 @@ public class BeanClassTool {
      *
      * @param list
      */
-    public static void getBeanClass(List<PropertyModel> list) {
+    private static void getBeanClass(List<PropertyModel> list) {
         StringBuilder propertyBuilder = new StringBuilder();
         StringBuilder methodBuilder = new StringBuilder();
         for (PropertyModel propertyModel : list) {
@@ -72,8 +72,8 @@ public class BeanClassTool {
      * @param name
      * @return
      */
-    public static String getPropertyName(String name) {
-        if (name.indexOf(SPLIT_REGEX) < 0) {
+    private static String getPropertyName(String name) {
+        if (!name.contains(SPLIT_REGEX)) {
             return name;
         } else {
             StringBuilder nameBuilder = new StringBuilder();
@@ -95,12 +95,9 @@ public class BeanClassTool {
      * @param name
      * @return
      */
-    public static String getPropertyGetName(String name) {
-        StringBuilder nameBuilder = new StringBuilder();
-        nameBuilder.append("get");
-        nameBuilder.append(name.replaceFirst(name.substring(0, 1), name.substring(0, 1).toUpperCase()));
-
-        return nameBuilder.toString();
+    private static String getPropertyGetName(String name) {
+        return "get" +
+                name.replaceFirst(name.substring(0, 1), name.substring(0, 1).toUpperCase());
     }
 
     /**
@@ -109,19 +106,16 @@ public class BeanClassTool {
      * @param name
      * @return
      */
-    public static String getPropertySetName(String name) {
-        StringBuilder nameBuilder = new StringBuilder();
-        nameBuilder.append("set");
-        nameBuilder.append(name.replaceFirst(name.substring(0, 1), name.substring(0, 1).toUpperCase()));
-
-        return nameBuilder.toString();
+    private static String getPropertySetName(String name) {
+        return "set" +
+                name.replaceFirst(name.substring(0, 1), name.substring(0, 1).toUpperCase());
     }
 
     /**
      * 属性模型
-     * 
-     * @Description PropertyModel
+     *
      * @author liurh
+     * @Description PropertyModel
      * @date 2018年7月27日
      */
     private static class PropertyModel {
@@ -129,25 +123,25 @@ public class BeanClassTool {
         private String type;
         private String comment;
 
-        public static PropertyModel get(String name, String type, String comment) {
+        static PropertyModel get(String name, String type, String comment) {
             return new PropertyModel(name, type, comment);
         }
 
-        public PropertyModel(String name, String type, String comment) {
+        PropertyModel(String name, String type, String comment) {
             this.name = name;
             this.type = type;
             this.comment = comment;
         }
 
-        public String getName() {
+        String getName() {
             return name;
         }
 
-        public String getType() {
+        String getType() {
             return type;
         }
 
-        public String getComment() {
+        String getComment() {
             return comment;
         }
     }
