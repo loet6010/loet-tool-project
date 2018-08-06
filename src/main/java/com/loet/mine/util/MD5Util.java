@@ -1,5 +1,6 @@
 package com.loet.mine.util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -39,13 +40,13 @@ public class MD5Util {
      * @param origin
      * @return
      */
-    public static String MD5Encode(String origin) {
+    private static String MD5Encode(String origin) {
         String resultString = null;
         try {
-            resultString = new String(origin);
+            resultString = origin;
             MessageDigest md = MessageDigest.getInstance("MD5");
-            resultString = byteArrayToHexString(md.digest(resultString.getBytes("UTF-8")));
-        } catch (Exception exception) {
+            resultString = byteArrayToHexString(md.digest(resultString.getBytes(StandardCharsets.UTF_8)));
+        } catch (Exception ignored) {
         }
         return resultString;
     }
@@ -57,9 +58,8 @@ public class MD5Util {
      * @return
      */
     private static String byteArrayToHexString(byte b[]) {
-        StringBuffer resultSb = new StringBuffer();
-        for (int i = 0; i < b.length; i++)
-            resultSb.append(byteToHexString(b[i]));
+        StringBuilder resultSb = new StringBuilder();
+        for (byte aB : b) resultSb.append(byteToHexString(aB));
 
         return resultSb.toString();
     }
