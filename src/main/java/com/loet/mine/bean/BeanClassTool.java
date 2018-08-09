@@ -16,10 +16,15 @@ public class BeanClassTool {
         List<PropertyModel> list = new ArrayList<>();
 
         // 设置表字段名称，属性、注释
-        list.add(PropertyModel.get("id", "String", "主键ID"));
-        list.add(PropertyModel.get("appId", "int", "应用ID"));
-        list.add(PropertyModel.get("appName", "String", "应用名称"));
-
+        list.add(PropertyModel.get("id", "long", "主键ID"));
+        list.add(PropertyModel.get("passageway_id", "String", "通道ID"));
+        list.add(PropertyModel.get("passageway_name", "String", "通道名称"));
+        list.add(PropertyModel.get("province", "String", "省份"));
+        list.add(PropertyModel.get("question", "String", "问题"));
+        list.add(PropertyModel.get("answer", "String", "答案"));
+        list.add(PropertyModel.get("status", "String", "类型"));
+        list.add(PropertyModel.get("create_time", "Date", "创建时间"));
+        list.add(PropertyModel.get("modify_time", "Date", "修改时间"));
         getBeanClass(list);
     }
 
