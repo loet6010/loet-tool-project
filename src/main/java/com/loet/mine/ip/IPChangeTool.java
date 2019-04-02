@@ -18,6 +18,7 @@ public class IPChangeTool {
         System.out.println(getNumFromIp("59.63.206.221"));
         System.out.println(getNumFromIp("192.168.0.221"));
         System.out.println(getIpFromNum(658546852));
+        System.out.println(getIpFromNum(123456));
     }
 
     /**
