@@ -1,5 +1,8 @@
 package com.loet.mine.ip;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
 /**
  * IP和十进制数转化
  * 
@@ -15,10 +18,16 @@ public class IPChangeTool {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(getNumFromIp("59.63.206.221"));
-        System.out.println(getNumFromIp("192.168.0.221"));
-        System.out.println(getIpFromNum(658546852));
-        System.out.println(getIpFromNum(123456));
+         String HEX_DIGITS[] =
+                {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+
+        String IV_PARAMETER = "0123456789abcdef";
+
+        byte[] bytesOne = Arrays.toString(HEX_DIGITS).getBytes(StandardCharsets.UTF_8);
+        byte[] bytesTwo = IV_PARAMETER.getBytes(StandardCharsets.UTF_8);
+
+        System.out.println(Arrays.toString(bytesOne));
+        System.out.println(Arrays.toString(bytesTwo));
     }
 
     /**
