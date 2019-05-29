@@ -17,13 +17,9 @@ public class BeanClassTool {
 
         // 设置表字段名称，属性、注释
         list.add(PropertyModel.get("id", "long", "主键ID"));
-        list.add(PropertyModel.get("contract_temp_id", "long", "合同模板ID"));
-        list.add(PropertyModel.get("employee_id", "long", "雇员ID"));
-        list.add(PropertyModel.get("company_id", "long", "公司ID"));
-        list.add(PropertyModel.get("start_time", "Date", "合同开始时间"));
-        list.add(PropertyModel.get("end_time", "Date", "合同结束时间"));
-        list.add(PropertyModel.get("pdf_file_path", "String", "PDF文件地址"));
-        list.add(PropertyModel.get("pic_file_path", "String", "图片文件地址"));
+        list.add(PropertyModel.get("token_name", "String", "token验证字段名"));
+        list.add(PropertyModel.get("token_url", "String", "token验证的URL"));
+        list.add(PropertyModel.get("url_name", "String", "URL名称"));
         list.add(PropertyModel.get("status", "int", "状态"));
         list.add(PropertyModel.get("create_time", "Date", "创建时间"));
         getBeanClass(list);
