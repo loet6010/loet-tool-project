@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  */
 public class PropertiesUtils {
     private static Logger logger = LoggerFactory.getLogger(PropertiesUtils.class);
-    private static final String MAIN_CONF_FILE = "conf/application.properties";
+    private static final String MAIN_CONF_FILE = "application.properties";
     private static PropertiesUtils instance = new PropertiesUtils();
     private static PropertiesConfiguration propertiesConfiguration;
 
@@ -22,6 +22,7 @@ public class PropertiesUtils {
     private PropertiesUtils() {
         PropertiesConfiguration pc = new PropertiesConfiguration();
         pc.setEncoding("UTF-8");
+        pc.setDelimiterParsingDisabled(true);
         try {
             pc.load(MAIN_CONF_FILE);
         } catch (ConfigurationException e) {

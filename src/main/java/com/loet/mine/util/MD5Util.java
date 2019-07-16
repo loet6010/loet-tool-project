@@ -40,7 +40,7 @@ public class MD5Util {
      * @param origin
      * @return
      */
-    private static String MD5Encode(String origin) {
+    public static String MD5Encode(String origin) {
         String resultString = null;
         try {
             resultString = origin;
@@ -79,4 +79,9 @@ public class MD5Util {
         return hexDigits[d1] + hexDigits[d2];
     }
 
+    public static void main(String[] args) {
+        String string = "15858273769123456";
+        String md5String = MD5Encode(string);
+        System.out.println(md5String);
+    }
 }
