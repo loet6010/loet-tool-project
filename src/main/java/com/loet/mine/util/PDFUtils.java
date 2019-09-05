@@ -104,4 +104,13 @@ public class PDFUtils {
         return byteArrayOutputStream.toByteArray();
     }
 
+    public static void main(String[] args) {
+        String filePath = "C:\\Users\\liurh\\Desktop\\自由职业者服务协议-杭州搜听.pdf";
+        try {
+            pdf2multiImage(filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

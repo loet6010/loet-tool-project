@@ -10,6 +10,8 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @version V1.0
@@ -25,7 +27,7 @@ public class AESUtils {
 
     public static void main(String[] args) throws Exception {
         String baseUrl = "http://192.168.4.16:8082/crowdsourcing-cps/foreign/companyInfo";
-        String encryptData = getAESEncryptData(10003L);
+        String encryptData = getAESEncryptData(100003L);
         System.out.println(encryptData);
         String url = baseUrl + "?signData=" + encryptData;
         System.out.println(url);
@@ -37,6 +39,8 @@ public class AESUtils {
         for (String param : params) {
             System.out.println(param);
         }
+
+        Map<String, Object> testMap = new HashMap<>();
     }
 
     /**
