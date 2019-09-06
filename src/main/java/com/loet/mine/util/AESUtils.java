@@ -50,7 +50,7 @@ public class AESUtils {
      */
     public static String getAESEncryptData(Long companyId) throws Exception {
         Long number = companyId * 2 / 5 + 35;
-        String encryptCode = MD5Util.MD5Encode(String.valueOf(number));
+        String encryptCode = MD5Utils.encode(String.valueOf(number));
         String params = String.format("companyId=%s|encryptCode=%s", companyId, encryptCode);
         String aesString = encrypt(params);
 
