@@ -1,5 +1,6 @@
 package com.loet.model;
 
+import com.loet.annotation.MD5Field;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -14,32 +15,38 @@ public class ApplyCashoutVo implements Serializable {
     /**
      * 提现合作公司商户号
      */
+    @MD5Field
     private String cashoutPartnerCode;
 
     /**
      * 合作公司订单号
      */
+    @MD5Field
     private String partnerOrderId;
 
     /**
      * 提现用户身份证号
      */
+    @MD5Field
     private String idCard;
 
     /**
      * 提现用户手机号
      */
+    @MD5Field
     private String phone;
 
     /**
      * 提现金额：分
      */
+    @MD5Field
     private Long cash;
 
     /**
      * unix时间戳
      */
-    private Long unixTime;
+    @MD5Field
+    private Long timestamp;
 
     /**
      * 签名字符串
@@ -86,12 +93,12 @@ public class ApplyCashoutVo implements Serializable {
         this.cash = cash;
     }
 
-    public Long getUnixTime() {
-        return unixTime;
+    public Long getTimestamp() {
+        return timestamp;
     }
 
-    public void setUnixTime(Long unixTime) {
-        this.unixTime = unixTime;
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getSign() {

@@ -10,8 +10,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Calendar;
 
 /**
  * @version V1.0
@@ -26,21 +25,26 @@ public class AESUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        String baseUrl = "http://192.168.4.16:8082/crowdsourcing-cps/foreign/companyInfo";
-        String encryptData = getAESEncryptData(100003L);
-        System.out.println(encryptData);
-        String url = baseUrl + "?signData=" + encryptData;
-        System.out.println(url);
-        String base64Decode = new String(Base64.decodeBase64(encryptData));
-        System.out.println(base64Decode);
-        String decryptString = decrypt(base64Decode);
-        System.out.println(decryptString);
-        String[] params = decryptString.split("\\|");
-        for (String param : params) {
-            System.out.println(param);
+        getExpireTime();
+        int test = 2;
+        if (test == 1) {
+            String baseUrl = "http://192.168.4.16:8082/crowdsourcing-cps/foreign/companyInfo";
+            String encryptData = getAESEncryptData(100003L);
+            System.out.println(encryptData);
+            String url = baseUrl + "?signData=" + encryptData;
+            System.out.println(url);
+            String base64Decode = new String(Base64.decodeBase64(encryptData));
+            System.out.println(base64Decode);
+            String decryptString = decrypt(base64Decode);
+            System.out.println(decryptString);
+            String[] params = decryptString.split("\\|");
+            for (String param : params) {
+                System.out.println(param);
+            }
+        } else {
+            String signDate = getCaiyuThirdSignData();
+            System.out.println(signDate);
         }
-
-        Map<String, Object> testMap = new HashMap<>();
     }
 
     /**
@@ -107,5 +111,27 @@ public class AESUtils {
 
         // linux环境下会自动补\r \n到加密数据里面
         return originalString.replaceAll("[\r\n]", "");
+    }
+
+    /**
+     * 获取财鱼第三方加密字符串
+     *
+     * @return
+     * @throws Exception
+     */
+    static String getCaiyuThirdSignData() throws Exception {
+        String paramsString = String.format("companyName=%s|timestamp=%s", "SOOYING", System.currentTimeMillis());
+
+        String aesString = AESUtils.encrypt(paramsString).trim();
+
+        return Base64.encodeBase64String(aesString.getBytes());
+    }
+
+    private static String getExpireTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, 1);
+        long time = calendar.getTime().getTime() / 1000;
+        System.out.println(time);
+        return String.valueOf(time);
     }
 }

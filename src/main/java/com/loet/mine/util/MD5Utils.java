@@ -1,12 +1,9 @@
 package com.loet.mine.util;
 
 import com.loet.model.ApplyCashoutVo;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -164,21 +161,22 @@ public class MD5Utils {
         applyCashoutVo.setCashoutPartnerCode("20180821250121");
         applyCashoutVo.setIdCard("362312199010213251");
         applyCashoutVo.setPhone("18765241520");
-        applyCashoutVo.setUnixTime(System.currentTimeMillis());
+        applyCashoutVo.setTimestamp(1567755512250L);
         applyCashoutVo.setPartnerOrderId("order_id_0001");
-        applyCashoutVo.setSign("");
+        applyCashoutVo.setSign("ad5ceba89464cb74971d6af02edbb655");
+
+        // Map<String, String> paramsMap = BeanMapUtils.bean2MD5ParamsMap(applyCashoutVo);
+        // System.out.println(paramsMap.toString());
 
         Map<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("partnerCode", "201909051000503169");
-        paramsMap.put("name", "刘荣华");
-        paramsMap.put("idCard", "362326198811142732");
-        paramsMap.put("phone", "18768121960");
-        paramsMap.put("accountType", "1");
-        paramsMap.put("accountCard", "6225885215763749");
+        paramsMap.put("cashoutPartnerCode", "201908261007");
+        paramsMap.put("partnerOrderId", "OR2019090614580007");
+        paramsMap.put("orderId", "CR201909060519070006");
+        paramsMap.put("result", "FAIL");
 
         System.out.println(paramsMap.toString());
 
-        String sign = paramsMD5Sign(paramsMap, "6934d_b6094_73e47_9809d_3cd53", "=", "&");
+        String sign = paramsMD5Sign(paramsMap, "lgdvsvg", "=", "&");
         System.out.println(sign);
     }
 }
