@@ -27,13 +27,6 @@ public class SimpleTest {
         System.out.println(mmsSign);
     }
 
-    private static String getPath(String path) {
-        if (!path.startsWith("http://") && !path.startsWith("https://")) {
-            path = "https://" + path;
-        }
-        return path;
-    }
-
     private static String getPdfBytes(String templateUrl) throws Exception {
         if (PDF_BYTES == null || PDF_BYTES.length <= 0) {
             URL url = new URL(templateUrl);
@@ -44,7 +37,6 @@ public class SimpleTest {
         // 对字节数组Base64编码
         BASE64Encoder encoder = new BASE64Encoder();
         return encoder.encode(PDF_BYTES);
-        // return Base64Utils.encodeToString(PDF_BYTES);
     }
 
     public static String getFileBase64(String imgURL) {
@@ -59,7 +51,7 @@ public class SimpleTest {
             conn.setConnectTimeout(5000);
             InputStream is = conn.getInputStream();
             // 将内容读取内存中
-            int len = -1;
+            int len;
             while ((len = is.read(by)) != -1) {
                 data.write(by, 0, len);
             }
