@@ -19,32 +19,22 @@ import java.util.Calendar;
 public class AESUtils {
     private static final String IV_PARAMETER = "0123456789abcdef";
     private static final String ENCRYPT_PATTERN = "AES/CBC/PKCS5Padding";
-    private static final String aesKey = PropertiesUtils.getString("aseSecretKey");
+    private static String aesKey = "63p604ouH7EqMKlmg2ARr9yDBA3hLPQ6rPOB2VseTEc";
 
     private AESUtils() {
     }
 
     public static void main(String[] args) throws Exception {
-        getExpireTime();
-        int test = 2;
-        if (test == 1) {
-            String baseUrl = "http://192.168.4.16:8082/crowdsourcing-cps/foreign/companyInfo";
-            String encryptData = getAESEncryptData(100003L);
-            System.out.println(encryptData);
-            String url = baseUrl + "?signData=" + encryptData;
-            System.out.println(url);
-            String base64Decode = new String(Base64.decodeBase64(encryptData));
-            System.out.println(base64Decode);
-            String decryptString = decrypt(base64Decode);
-            System.out.println(decryptString);
-            String[] params = decryptString.split("\\|");
-            for (String param : params) {
-                System.out.println(param);
-            }
-        } else {
-            String signDate = getCaiyuThirdSignData();
-            System.out.println(signDate);
-        }
+        aesKey = new String(Base64.decodeBase64(aesKey));
+        System.out.println(aesKey);
+
+        String data = "3aGnzDcdwMp8Y6bf4qhbInbhOaqh4DEa8zxOd7IddgEvFn/OClW9yaDl3EL8tUW7Jt5ZMxzgA+lIwPLC3Cx1pw==";
+        String base64Decode = new String(Base64.decodeBase64(data));
+        System.out.println(base64Decode);
+
+        String decryptString = decrypt(base64Decode);
+
+        System.out.println(decryptString);
     }
 
     /**

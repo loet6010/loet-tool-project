@@ -1,17 +1,22 @@
 package com.loet.mine.test;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import org.springframework.util.FileCopyUtils;
 import sun.misc.BASE64Encoder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @Author liurh
@@ -19,12 +24,39 @@ import java.util.UUID;
  * @Date 2019/8/22
  */
 public class SimpleTest {
+    private static final int HASH_BITS = 0x7fffffff;
     private static byte[] PDF_BYTES = null;
 
-    public static void main(String[] args) throws Exception {
-        String mmsSign = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+    private static final String header_bearer = "Bearer\n";
 
-        System.out.println(mmsSign);
+    public static void main(String[] args) throws Exception {
+        Calendar calendar = Calendar.getInstance();
+        System.out.println(DateUtil.format(calendar.getTime(), DatePattern.NORM_DATETIME_FORMAT));
+        calendar.add(Calendar.DATE, 1000);
+        System.out.println(DateUtil.format(calendar.getTime(), DatePattern.NORM_DATETIME_FORMAT));
+
+        String header = header_bearer + "acdtest";
+        System.out.println(header);
+
+        test();
+    }
+
+    private static void test() {
+        List<String> names = new ArrayList<String>() {{
+            add("Hello");
+            add("World");
+            add("Good");
+        }};
+        Iterator iterator = names.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().equals("Hello")) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private static final int spread(int h) {
+        return (h ^ (h >>> 16)) & HASH_BITS;
     }
 
     private static String getPdfBytes(String templateUrl) throws Exception {
